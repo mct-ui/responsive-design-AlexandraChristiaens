@@ -2,6 +2,27 @@
   #FONTS
 \*------------------------------------*/
 
+@font-face {
+    font-family:"HK Grotesk Web";
+    font-weight: 200;
+    /* url beginnen met ../fonts --> gaan naar bovenliggende map en dan naar map fonts*/
+    src:url("../fonts/hkgrotesk-light-webfont.woff2") format("woff2"); /* dit is het nieuwere formaat, dus we zitten dit vanboven*/
+    src:url("../fonts/hkgrotesk-light-webfont.woff") format("woff"); /*dit is het oudere formaat*/
+}
+
+@font-face {
+    font-family:"HK Grotesk Web";
+    font-weight: 400;
+    src:url("../fonts/hkgrotesk-regular-webfont.woff2") format("woff2");
+    src:url("../fonts/hkgrotesk-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family:"HK Grotesk Web";
+    font-weight: 600;
+    src:url("../fonts/hkgrotesk-medium-webfont.woff2") format("woff2");
+    src:url("../fonts/hkgrotesk-medium-webfont.woff") format("woff");
+}
 /*------------------------------------*\
   #GENERIC
 \*------------------------------------*/
@@ -15,17 +36,24 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: #111;
-    box-sizing: border-box;
+    font-family: "HK Grotesk Web", Helvetica, arial, sans-serif; /*moeten hier font grotesk eerst aanroepen voor hij het gebruikt, font face declarations alleen zijn niet genoeg*/
+    color: #202024;
+    box-sizing: border-box; /* berekend padding vanbinnenuit ipv vanbuitenuit*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+@media(min-width: 768px){
+    html{
+        font-size: 20px;
+        line-height: 1.6;
+    }
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+    box-sizing: inherit; /*niet vergeten om border-box te laten inheriten*/
 }
 
 /*
@@ -36,7 +64,7 @@ html {
  */
 
 ::selection {
-    background: #e85e00;
+    background: #5051DB;
     color: white;
     text-shadow: none;
 }
@@ -62,6 +90,9 @@ img {
     Default markup for typographic elements
 */
 
+h1,h2,h3 {
+    font-weight: 200;
+}
 h1 {
     font-size: 36px;
     line-height: 48px;
@@ -136,18 +167,18 @@ hr {
 }
 
 a {
-    color: RoyalBlue;
+    color: #5051db;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: BlueViolet;
+    color: #3E3EA8;
 }
 
 a:hover,
 a:focus {
-    color: Crimson;
+    color: #3E3EA8;
 }
 
 /*------------------------------------*\
@@ -195,7 +226,7 @@ a:focus {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 90em; /* 90 * 16px = 1440px */
+    max-width: 56.4em; /* 90 * 16px = 1440px */ /*verandert naar 56.4 want we willen max widt van 1128 en we hebben basis verandert naar 20 --> 20*56.4 = 1128*/
 }
 
 /*
