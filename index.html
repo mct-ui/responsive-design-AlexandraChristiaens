@@ -19,8 +19,10 @@
         <link rel="stylesheet" href="css/screen.css">
     </head>
     <body>
-        <header class="o-row">
+        <header class="o-row o-row--md">
             <div class="o-container">
+                <div class="c-header">
+                    <div class="c-header__logo">
                 <h1 class="c-logo">
                     <svg class="c-logo__symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 40">
                         <title>Flatiron</title>
@@ -30,58 +32,67 @@
                     </svg>
 
                 </h1>
-                <nav>
-                    <ul>
-                        <li><a href="#!">Technology</a></li>
-                        <li><a href="#!">Company</a></li>
-                        <li><a href="#!">Publications</a></li>
-                    </ul>
-                </nav>
-                <nav>
-                    <ul>
-                        <li><a href="#!">Careers</a></li>
-                        <li><a href="#!">Blog</a></li>
+            </div>
+            <div class="c-header__nav ">
+                <nav class="c-nav ">
+                    <ul class="o-list c-nav__list">
+                        <li class="c-nav__item is-selected"><a href="#!" class=" c-nav__link ">Technology</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link">Company</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link">Publications</a></li>
                     </ul>
                 </nav>
             </div>
+            <div class="c-header__nav">
+                <nav class="c-nav c-nav--meta">
+                    <ul class="o-list c-nav__list">
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link c-nav__link--meta">Careers</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link c-nav__link--meta">Blog</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
         </header>
-        <section class="o-row">
+
+        <section class="o-row o-row--lg u-pt-clear">
             <div class="o-container">
-                <div class="u-max-width-md">
-                    <h1>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto odio ipsa quas at iste
-                    </h1>
-                    <h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore, in culpa.
-                    </h2>
-                    <h3>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur labore, in culpa.
-                    </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam sapiente quo modi odio odit provident dolores nobis nulla quam, earum repellendus, voluptate? Distinctio neque corporis dolorum quos quasi, ducimus perspiciatis?
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="o-row o-row--lg">
-            <div class="o-container">
+                <div class="o-section o-section--lg">
                 <figure>
                     <img src="img/jpg/intro-img.jpg" alt="Dr. James Hamrick & Sarika Vora in their weekly team stand-up">
                 </figure>
+            </div>
+            <div class="o-section o-section--lg">
+            <div class = "o-layout o-layout--gutter-lg">
+            <div  class= "o-layout__item u-1-of-2-bp3">
+            <div class="-max-width-sm">
                 <h1>
-                    Cancer is smart.
-                    Together, we can
+                    Cancer is smart. <br>
+                    Together, we can <br>
                     be smarter.
                 </h1>
+            </div>
+        </div>
+
+
+
+            <div class= "o-layout__item u-1-of-2-bp3">
+            <div class="u-max-width-sm">
                 <p>
                     Accelerating the fight against cancer requires the entire industry to work together. Our products connect community oncologists, academics, hospitals, life science researchers and regulators on a shared technology platform. <br>
                     Together, we can learn from the experience of every patient.
                 </p>
             </div>
+        </div>
+    </div>
+</div>
+</div>
+
         </section>
         <section class="o-row o-row--lg">
             <div class="o-container">
-                <article>
+
+                <article class = "o-layout o-layout--gutter-lg o-layout--align-center" >
+                        <div class=" o-layout__item u-1-of-2-bp3 ">
                     <figure>
                         <picture>
                             <source srcset="img/jpg/img-1.jpg" media="(min-width: 992px)">
@@ -90,6 +101,8 @@
                         </picture>
                         <figcaption>Dr. Jeremy McDuffie, Tennessee Oncology</figcaption>
                     </figure>
+                </div>
+                    <div class="o-layout__item u-1-of-2-bp3">
                     <header>
                         <h2>
                             For Community <br>
@@ -102,8 +115,12 @@
                     <p>
                         <a href="#!">Learn more</a>
                     </p>
+                </div>
+
+
                 </article>
-                <article>
+                <article class="o-layout o-layout--gutter-lg o-layout--align-center o-layout--row-reverse" >
+                        <div class=" o-layout__item u-1-of-2-bp3 ">
                     <figure>
                         <picture>
                             <source srcset="img/jpg/img-2.jpg" media="(min-width: 992px)">
@@ -112,6 +129,8 @@
                         </picture>
                         <figcaption>The lab at New York Cancer & Blood Specialists</figcaption>
                     </figure>
+                </div>
+                <div class=" o-layout__item u-1-of-2-bp3 ">
                     <header>
                         <h2>
                             For Life <br>
@@ -124,6 +143,7 @@
                     <p>
                         <a href="#!">Learn more</a>
                     </p>
+                </div>
                 </article>
                 <article>
                     <figure>
