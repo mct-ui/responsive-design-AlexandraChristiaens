@@ -218,6 +218,11 @@ a:focus {
         padding-bottom: 48px;
     }
 }
+/*color modifiers*/
+.o-row--neutral-x-light{
+    background: #f7f7f7;
+
+}
 
 /*
     Objects: Container
