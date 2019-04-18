@@ -41,6 +41,17 @@ html {
     box-sizing: border-box; /* berekend padding vanbinnenuit ipv vanbuitenuit*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+.has-mobile-nav {
+    overflow: : hidden;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit; /*niet vergeten om border-box te laten inheriten*/
 }
 
 @media(min-width: 768px){
@@ -50,12 +61,6 @@ html {
     }
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: inherit; /*niet vergeten om border-box te laten inheriten*/
-}
-
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -63,6 +68,11 @@ html {
  * Customize the background color to match your design.
  */
 
+::-moz-selection{
+    background: #5051DB;
+    color: white;
+    text-shadow: none;
+}
 ::selection {
     background: #5051DB;
     color: white;
@@ -198,6 +208,18 @@ a:focus {
     flex-direction: column;
 }
 
+/*color modifiers*/
+.o-row--neutral-x-light{
+    background: #f7f7f7;
+
+}
+    /* geeft gradient achtergrond kleur: hier van links beneden naar rechts boven*/
+.o-row--gradient{
+    color: #ffffff;
+    background: linear-gradient(to top, #5051DB 0%, #3887F7 100%);
+
+}
+
 /* size modifiers */
 
 .o-row--lg {
@@ -218,17 +240,14 @@ a:focus {
         padding-bottom: 48px;
     }
 }
-/*color modifiers*/
-.o-row--neutral-x-light{
-    background: #f7f7f7;
 
-}
-    /* geeft gradient achtergrond kleur: hier van links beneden naar rechts boven*/
-.o-row--gradient{
-    color: #ffffff;
-    background: linear-gradient(to top, #5051DB 0%, #3887F7 100%);
+/* padding clear modifiers */
 
+.o-row--clear-top {
+    padding-top: 0;
 }
+
+/*
 
 /*
     Objects: Container
@@ -242,7 +261,37 @@ a:focus {
     width: 100%;
     max-width: 56.4em; /* 90 * 16px = 1440px */ /*verandert naar 56.4 want we willen max widt van 1128 en we hebben basis verandert naar 20 --> 20*56.4 = 1128*/
 }
+/*
+    Objects: section
+    ---
+    Creates vertical whitespace between adjacent sections inside a row
+*/
 
+.o-section {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.o-section + .o-section {
+    margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+    .o-section--lg + .o-section--lg,
+    .o-section--xl + .o-section--xl {
+        margin-top: 48px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .o-section--xl + .o-section--xl {
+        margin-top: 72px;
+    }
+}
 /*
     Objects: Layout
     ---
@@ -369,34 +418,144 @@ a:focus {
     list-style: none;
     padding: 0;
 }
+
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
 /*
-    Objects: section
+    Component: Logo
     ---
-    Creates vertical whitespace between adjacent sections inside a row
+    Website main logo
 */
 
-.o-section {
+.c-logo {
+    height:32px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
-.o-section + .o-section {
-    margin-top: 24px;
+.c-logo__symbol {
+    height: inherit;
 }
 
 @media (min-width: 768px) {
-    .o-section--lg + .o-section--lg,
-    .o-section--xl + .o-section--xl {
-        margin-top: 48px;
+    .c-logo {
+        height: 40px;
     }
 }
 
-@media (min-width: 1200px) {
-    .o-section--xl + .o-section--xl {
-        margin-top: 72px;
+/*
+    Component: header
+    ---
+    Main header of the website
+*/
+.c-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.c-header__nav {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .c-header__logo,
+    .c-header__nav {
+        flex-grow: 1;
+        flex-basis: 50%;
+    }
+
+    .c-header__nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .c-header__nav--main {
+    flex-grow: 2;
+    justify-content: center;
+}
+
+.c-header__mobile-nav-trigger {
+    display: none;
+}
+
+}
+/*
+    Component: footer
+    ---
+    Main footer of the website
+*/
+
+.c-footer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-footer__logo {
+    width: 100%
+}
+
+.c-footer__nav {
+    width:50%;
+}
+
+@media (min-width: 768px) {
+    .c-footer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .c-footer__logo {
+        display: flex;
+        justify-content: center;
+        padding: 0 12px;
+    }
+
+    .c-footer__nav {
+        width: auto;
+        padding: 0 16px;
     }
 }
 
+@media (min-width: 992px) {
+    .c-footer {
+        justify-content: space-between;
+
+    }
+
+    .c-footer__logo {
+        width: auto;
+
+    }
+
+    .c-footer__logo + .c-footer__nav {
+
+        order: -1;
+    }
+
+    .c-footer__nav {
+        padding: 0
+    }
+    /*
+        Bonus: real centering with CSS
+        Checkout: https://css-tricks.com/centering-css-complete-guide/
+
+     zo staat Flatiron logo in het midden, onafhaneklijk van de lengte van de items links en rechts;*/
+
+
+    /* .c-footer__logo {
+        width: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .c-footer__logo .c-logo {
+        margin-bottom: 0;
+    } */
+}
 /*
     Component: Nav
     ---
@@ -415,6 +574,7 @@ a:focus {
 .c-nav__link {
     text-decoration: none;
     font-weight: 400;
+    display: block;
     padding: 8px 0;
 }
 
@@ -443,52 +603,6 @@ a:focus {
 
     .c-nav__link {
         padding: 8px 16px;
-    }
-}
-
-/*------------------------------------*\
-  #COMPONENTS
-\*------------------------------------*/
-/*
-    Component: Logo
-    ---
-    Website main logo
-*/
-
-.c-logo {
-    height:32px;
-}
-
-.c-logo__symbol {
-    height: 100%;
-}
-
-@media (min-width: 768px) {
-    .c-logo {
-        height: 40px;
-    }
-}
-
-/*
-    Component: header
-    ---
-    Main header of the website
-*/
-
-.c-header__nav {
-    display: none;
-}
-
-@media (min-width: 992px) {
-    .c-header {
-        display: flex;
-        justify-content: space-between;
-
-        align-items: center;
-    }
-
-    .c-header__nav {
-        display: block;
     }
 }
 
@@ -565,6 +679,70 @@ a:focus {
         line-height: 72px;
     }
 }
+
+/*
+    Component: figure
+    ---
+    Special type of figure and figcaption
+*/
+
+.c-figure {
+    position: relative;
+}
+
+.c-figure__caption {
+    line-height: 15px;
+margin-top: 8px;
+padding-left: 6px;
+padding-top: 1px;
+border: 2px solid #5051DB;
+border-width: 0 0 0 2px;
+}
+
+@media (min-width: 768px) {
+    .c-figure__caption--absolute {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 8px;
+        text-align: right;
+        background-color: #fff;
+        padding: 16px;
+        max-width: 260px;
+        border-width: 0 4px 0 0;
+    }
+}
+/*
+    Component: Title icon
+    ---
+    Special type of title with icon
+*/
+.c-title-icon {
+    display: flex;
+    align-items: flex-start;
+}
+
+.c-title-icon__icon {
+    height: 70px;
+    margin-right: 20px;
+}
+
+.c-title-icon__path {
+    fill: #202024;
+}
+
+@media (min-width: 768px) {
+    .c-title-icon__icon {
+        height: 84px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .c-title-icon__icon {
+        height: 112px;
+    }
+}
+
 /*
     Component: CTA link
     ---
@@ -617,99 +795,68 @@ text-decoration: none;
 
 .c-link-cta--inverse,
 .c-link-cta--inverse:visited,
-.c-link-cta--inverse:active {
+.c-link-cta--inverse:active, .c-link--inverse:hover {
     color: #ffffff;
 }
 
-.c-link-cta--inverse::after {
+.c-link-cta--inverse::after, .c-link-cta--inverse:hover::after {
     background-color: #fff;
 
 }
-.c-link-cta--inverse:hover::after {
-    background-color: #ffffff;
-}
-
-/*
-    Component: footer
-    ---
-    Main footer of the website
-*/
-
-.c-footer {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.c-footer__logo {
-    width: 100%
-}
-
-.c-footer__nav {
-    width:50%;
-}
-
-@media (min-width: 768px) {
-    .c-footer {
-        justify-content: center;
-        align-items: center;
-    }
-
-    .c-footer__logo {
-        display: flex;
-        justify-content: center;
-        padding: 0 12px;
-    }
-
-    .c-footer__nav {
-        width: auto;
-        padding: 0 16px;
-    }
-}
-
-@media (min-width: 992px) {
-    .c-footer {
-        justify-content: space-between;
-
-    }
-
-    .c-footer__logo {
-        width: auto;
-
-    }
-
-    .c-footer__logo + .c-footer__nav {
-
-        order: -1;
-    }
-
-    .c-footer__nav {
-        padding: 0
-    }
-    /*
-        Bonus: real centering with CSS
-        Checkout: https://css-tricks.com/centering-css-complete-guide/
-
-     zo staat Flatiron logo in het midden, onafhaneklijk van de lengte van de items links en rechts;*/
-
-
-    /* .c-footer__logo {
-        width: auto;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .c-footer__logo .c-logo {
-        margin-bottom: 0;
-    } */
-}
-
 
 
 /*------------------------------------*\
   #UTILITIES
 \*------------------------------------*/
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-primary-light {
+    color: #7373f5 !important;
+}
+
+.u-color-primary-base {
+    color: #5051db !important;
+}
+
+.u-color-primary-dark {
+    color: #3e3ea8 !important;
+}
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+    padding-top: 0 !important;
+}
+.u-mb-clear {
+    margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+    margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+    margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+    margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+    margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+    margin-bottom: 48px !important;
+}
 
 /*
     Utilities: max-width
@@ -938,34 +1085,6 @@ text-decoration: none;
     .u-5-of-6-bp4 {
         width: 83.3333333333% !important;
     }
-}
-
-/*
-    Utilities: spacing
-    ---
-    Utility classes to put specific margins and paddings onto elements
-*/
-
-.u-pt-clear {
-    padding-top: 0 !important;
-}
-
-/*
-    Utilities: color
-    ---
-    Utility classes to put specific colors onto elements
-*/
-
-.u-color-primary-light {
-    color: #7373f5 !important;
-}
-
-.u-color-primary-base {
-    color: #5051db !important;
-}
-
-.u-color-primary-dark {
-    color: #3e3ea8 !important;
 }
 
 /*------------------------------------*\
