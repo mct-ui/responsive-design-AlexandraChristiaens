@@ -223,6 +223,12 @@ a:focus {
     background: #f7f7f7;
 
 }
+    /* geeft gradient achtergrond kleur: hier van links beneden naar rechts boven*/
+.o-row--gradient{
+    color: #ffffff;
+    background: linear-gradient(to top, #5051DB 0%, #3887F7 100%);
+
+}
 
 /*
     Objects: Container
@@ -606,6 +612,23 @@ text-decoration: none;
     transform: scaleX(1);
     background-color: #3e3ea8;
 }
+
+/* inversed cta voor in blauwe achtergrond regio */
+
+.c-link-cta--inverse,
+.c-link-cta--inverse:visited,
+.c-link-cta--inverse:active {
+    color: #ffffff;
+}
+
+.c-link-cta--inverse::after {
+    background-color: #fff;
+
+}
+.c-link-cta--inverse:hover::after {
+    background-color: #ffffff;
+}
+
 
 /*------------------------------------*\
   #UTILITIES
